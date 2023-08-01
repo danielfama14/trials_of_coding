@@ -14,7 +14,13 @@
     <header>
         <nav>
             <ul>
-                <li><p>View High Scores</p></li>
+                
+                <li>
+                    <div class="score">
+                    <button id="viewHighScoresBtn">View High Scores</button>
+                    </div>
+                </li>
+              
                 <li>
                     <div class="timer">
                         <div class="time_left_txt">Time Left:</div>
@@ -69,6 +75,15 @@
             <button class="restart">Replay Quiz</button>
             <button class="quit">Quit Quiz</button>
         </div>
+    </div>
+
+     <!-- Scores Box -->
+     <div class="high_scores_box">
+        <h2>High Scores</h2>
+        <ul class="high_scores_list">
+            <!-- High scores will be dynamically added here from JavaScript -->
+        </ul>
+        <button class="close_scores_btn">Close</button>
     </div>
 
     <!-- Inside this JavaScript file I've inserted Questions and Options only -->
