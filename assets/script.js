@@ -18,10 +18,11 @@ start_btn.onclick = ()=>{
     quiz_box.classList.add("activeQuiz"); //show quiz box
     showQuetions(0); //calling showQestions function
     queCounter(1); //passing 1 parameter to queCounter
-    startTimer(60); //calling startTimer function
+    startTimer(timeValue); //calling startTimer function
     startTimerLine(0); //calling startTimerLine function
 }
 
+let timeLeft=null;
 let timeValue =  60;
 let que_count = 0;
 let que_numb = 1;
@@ -69,7 +70,7 @@ next_btn.onclick = ()=>{
         queCounter(que_numb); //passing que_numb value to queCounter
         clearInterval(counter); //clear counter
         clearInterval(counterLine); //clear counterLine
-        startTimer(timeValue); //calling startTimer function
+        startTimer(timeLeft); //calling startTimer function
         startTimerLine(widthValue); //calling startTimerLine function
         timeText.textContent = "Time Left"; //change the timeText to Time Left
         next_btn.classList.remove("show"); //hide the next button
@@ -119,6 +120,7 @@ function optionSelected(answer){
         console.log("Correct Answer");
         console.log("Your correct answers = " + userScore);
     }else{
+        timeLeft=timeLeft - 10;
         answer.classList.add("incorrect"); //adding red color to correct selected option
         answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
         console.log("Wrong Answer");
@@ -162,6 +164,7 @@ function startTimer(time){
     function timer(){
         timeCount.textContent = time; //changing the value of timeCount with time value
         time--; //decrement the time value
+        timeLeft=time;
         if(time < 9){ //if timer is less than 9
             let addZero = timeCount.textContent; 
             timeCount.textContent = "0" + addZero; //add a 0 before time value
@@ -202,3 +205,62 @@ function queCounter(index){
     let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
     bottom_ques_counter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_ques_counter
 }
+
+function showHighScores (){
+    $("#screen-home");
+    $("#screen")
+}
+
+
+const viewHighScoresBtn = document.getElementById("viewHighScoresBtn");
+        const highScoresBox = document.querySelector(".high_scores_box");
+        const closeHighScoresBtn = document.querySelector(".close_scores_btn");
+
+        viewHighScoresBtn.addEventListener("click", () => {
+            highScoresBox.style.display = "block";
+        });
+
+        closeHighScoresBtn.addEventListener("click", () => {
+            highScoresBox.style.display = "none";
+        });
+
+
+
+        // Function to show the high scores box
+function showHighScoresBox(scores) {
+    const highScoresBox = document.querySelector('.high_scores_box');
+    const highScoresList = document.querySelector('.high_scores_list');
+    highScoresList.innerHTML = '';
+
+    scores.forEach((score, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${index + 1}. ${score.name}: ${score.score}`;
+        highScoresList.appendChild(listItem);
+    });
+
+    highScoresBox.style.display = 'block';
+}
+
+// Function to hide the high scores box
+function hideHighScoresBox() {
+    const highScoresBox = document.querySelector('.high_scores_box');
+    highScoresBox.style.display = 'none';
+}
+
+// Sample data for high scores 
+const sampleHighScores = [
+    { name: 'Player1', score: 100 },
+    { name: 'Player2', score: 90 },
+    { name: 'Player3', score: 80 },
+    { name: 'Player4', score: 70 },
+];
+
+// Call the showHighScoresBox function to display high scores when the "View High Scores" link is clicked
+const viewHighScoresLink = document.querySelector('li p');
+viewHighScoresLink.addEventListener('click', () => {
+    showHighScoresBox(sampleHighScores);
+});
+
+// Call the hideHighScoresBox function to hide high scores when the "Close" button is clicked
+const closeScoresBtn = document.querySelector('.close_scores_btn');
+closeScoresBtn.addEventListener('click', hideHighScoresBox);
