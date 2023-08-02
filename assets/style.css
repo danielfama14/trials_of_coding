@@ -378,7 +378,7 @@ footer button.show{
 /* Styles for the high scores box */
 .high_scores_box {
     width: 650px;
-    height: 400px;
+    height: 450px;
     display: none;
     position: fixed;
     top: 50%;
