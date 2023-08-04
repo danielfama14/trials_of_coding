@@ -169,10 +169,9 @@ function startTimer(time){
             let addZero = timeCount.textContent; 
             timeCount.textContent = "0" + addZero; //add a 0 before time value
         }
-        if(time < 0){ //if timer is less than 0
+        if(time <= 0){ //if timer is less than 0
             clearInterval(counter); //clear counter
             timeText.textContent = "Time Off"; //change the time text to time off
-            showResult(); //will show result page when timer reaches 0
             const allOptions = option_list.children.length; //getting all option items
             let correcAns = questions[que_count].answer; //getting correct answer from array
             for(i=0; i < allOptions; i++){
@@ -214,12 +213,20 @@ function showHighScores (){
 
 
 const viewHighScoresBtn = document.getElementById("viewHighScoresBtn");
-viewHighScoresBtn.addEventListener("click", () => {
-    // Call the function to display high scores
-    showHighScoresBox(sampleHighScores);
-});
+        const highScoresBox = document.querySelector(".high_scores_box");
+        const closeHighScoresBtn = document.querySelector(".close_scores_btn");
 
-// Function to show the high scores box
+        viewHighScoresBtn.addEventListener("click", () => {
+            highScoresBox.style.display = "block";
+        });
+
+        closeHighScoresBtn.addEventListener("click", () => {
+            highScoresBox.style.display = "none";
+        });
+
+
+
+        // Function to show the high scores box
 function showHighScoresBox(scores) {
     const highScoresBox = document.querySelector('.high_scores_box');
     const highScoresList = document.querySelector('.high_scores_list');
@@ -247,6 +254,12 @@ const sampleHighScores = [
     { name: 'Player3', score: 80 },
     { name: 'Player4', score: 70 },
 ];
+
+// Call the showHighScoresBox function to display high scores when the "View High Scores" link is clicked
+const viewHighScoresLink = document.querySelector('li p');
+viewHighScoresLink.addEventListener('click', () => {
+    showHighScoresBox(sampleHighScores);
+});
 
 // Call the hideHighScoresBox function to hide high scores when the "Close" button is clicked
 const closeScoresBtn = document.querySelector('.close_scores_btn');
