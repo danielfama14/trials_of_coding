@@ -169,7 +169,7 @@ function startTimer(time){
             let addZero = timeCount.textContent; 
             timeCount.textContent = "0" + addZero; //add a 0 before time value
         }
-        if(time < 0){ //if timer is less than 0
+        if(time <= 0){ //if timer is less than 0
             clearInterval(counter); //clear counter
             timeText.textContent = "Time Off"; //change the time text to time off
             const allOptions = option_list.children.length; //getting all option items
