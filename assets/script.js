@@ -6,7 +6,7 @@ const continue_btn = info_box.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
-const time_line = document.querySelector("header .time_line");
+const time_line = document.querySelector(".time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
@@ -171,6 +171,7 @@ function startTimer(time){
         }
         if(time <= 0){ //if timer is less than 0
             clearInterval(counter); //clear counter
+            showResult()
             timeText.textContent = "Time Off"; //change the time text to time off
             const allOptions = option_list.children.length; //getting all option items
             let correcAns = questions[que_count].answer; //getting correct answer from array
@@ -193,7 +194,7 @@ function startTimerLine(time){
     counterLine = setInterval(timer, 29);
     function timer(){
         time += 1; //upgrading time value with 1
-        time_line.style.width = time + "px"; //increasing width of time_line with px by time value
+        //time_line.style.width = time + "px"; //increasing width of time_line with px by time value//
         if(time > 549){ //if time value is greater than 549
             clearInterval(counterLine); //clear counterLine
         }
@@ -227,14 +228,15 @@ const viewHighScoresBtn = document.getElementById("viewHighScoresBtn");
 
 
         // Function to show the high scores box
-function showHighScoresBox(scores) {
+function showHighScoresBox() {
     const highScoresBox = document.querySelector('.high_scores_box');
     const highScoresList = document.querySelector('.high_scores_list');
+    let scores=JSON.parse(localStorage.getItem("highScores"))|| []
     highScoresList.innerHTML = '';
 
-    scores.forEach((score, index) => {
+    scores.forEach((score) => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${index + 1}. ${score.name}: ${score.score}`;
+        listItem.textContent = ` ${score.initials}: ${score.userScore}`;
         highScoresList.appendChild(listItem);
     });
 
@@ -255,8 +257,26 @@ const sampleHighScores = [
     { name: 'Player4', score: 70 },
 ];
 
+const saveScore=() =>{
+    const initialsInput=document.querySelector("#initialsInput")
+    const initials=initialsInput.value.trim()
+    const highScores=JSON.parse(localStorage.getItem("highScores"))||[]
+    const newScore={
+        initials:initials,
+        userScore:userScore
+    }
+    highScores.push(newScore)
+    localStorage.setItem("highScores",JSON.stringify(highScores) )
+}   
+
+
+const showScores=(e) => {
+e.preventDefault()
+
+}
+
 // Call the showHighScoresBox function to display high scores when the "View High Scores" link is clicked
-const viewHighScoresLink = document.querySelector('li p');
+const viewHighScoresLink = document.querySelector('#viewHighScoresBtn');
 viewHighScoresLink.addEventListener('click', () => {
     showHighScoresBox(sampleHighScores);
 });
@@ -264,3 +284,7 @@ viewHighScoresLink.addEventListener('click', () => {
 // Call the hideHighScoresBox function to hide high scores when the "Close" button is clicked
 const closeScoresBtn = document.querySelector('.close_scores_btn');
 closeScoresBtn.addEventListener('click', hideHighScoresBox);
+
+
+const saveScoreButton=document.querySelector(".save_score")
+saveScoreButton.addEventListener('click',saveScore)
