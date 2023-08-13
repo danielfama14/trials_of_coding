@@ -177,7 +177,7 @@ function startTimer(time){
         timeCount.textContent = time; //changing the value of timeCount with time value
         time--; //decrement the time value
         timeLeft=time;
-        if(time < 9){ //if timer is less than 9
+        if(time < 10){ //if timer is less than 10
             let addZero = timeCount.textContent; 
             timeCount.textContent = "0" + addZero; //add a 0 before time value
         }
@@ -244,6 +244,10 @@ function showHighScoresBox() {
     const highScoresBox = document.querySelector('.high_scores_box');
     const highScoresList = document.querySelector('.high_scores_list');
     let scores=JSON.parse(localStorage.getItem("highScores"))|| []
+    
+    //orders scores from highest to lowest
+    scores.sort((a, b) => b.userScore - a.userScore);
+    
     highScoresList.innerHTML = '';
 
     scores.forEach((score) => {
