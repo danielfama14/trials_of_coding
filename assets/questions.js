@@ -13,7 +13,7 @@ let questions = [
   },
     {
     numb: 2,
-    question: "The condition in an if/else statement is enclosed with...",
+    question: "The condition in an if/else statement is enclosed with ...",
     answer: "Parenthesis",
     options: [
       "Quotes",
@@ -24,7 +24,7 @@ let questions = [
   },
     {
     numb: 3,
-    question: "Arrays in JavaScript can be used to store...",
+    question: "Arrays in JavaScript can be used to store ...",
     answer: "All of the above",
     options: [
       "Numbers and strings",
@@ -35,7 +35,7 @@ let questions = [
   },
     {
     numb: 4,
-    question: "When being assigned to variables, string values must be enclosed within...",
+    question: "When being assigned to variables, string values must be enclosed within ...",
     answer: "Quotes",
     options: [
       "Commas",
