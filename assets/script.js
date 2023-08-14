@@ -171,33 +171,34 @@ function showResult(){
     }
 }
 
-function startTimer(time){
+function startTimer(time) {
     counter = setInterval(timer, 1000);
-    function timer(){
-        timeCount.textContent = time; //changing the value of timeCount with time value
-        time--; //decrement the time value
-        timeLeft=time;
-        if(time < 10){ //if timer is less than 10
-            let addZero = timeCount.textContent; 
-            timeCount.textContent = "0" + addZero; //add a 0 before time value
-        }
-        if(time <= 0){ //if timer is less than 0
-            clearInterval(counter); //clear counter
+    function timer() {
+        console.log("Time:", time);
+        if (time >= 0) {
+            timeCount.textContent = time < 10 ? "0" + time : time;
+            time--; // Decrement the time value
+            timeLeft = time;
+        } else {
+            clearInterval(counter); // Clear counter
             showResult();
-            timeText.textContent = "Time Off"; //change the time text to time off
-            const allOptions = option_list.children.length; //getting all option items
-            let correcAns = questions[que_count].answer; //getting correct answer from array
-            for(i=0; i < allOptions; i++){
-                if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer
-                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+            timeText.textContent = "Time Off"; // Change the time text to time off
+            const allOptions = option_list.children.length; // Getting all option items
+            let correcAns = questions[que_count].answer; // Getting correct answer from array
+            
+            for (i = 0; i < allOptions; i++) {
+                if (option_list.children[i].textContent == correcAns) { // If there is an option which is matched to an array answer
+                    option_list.children[i].setAttribute("class", "option correct"); // Adding green color to matched option
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); // Adding tick icon to matched option
                     console.log("Time Off: Auto selected correct answer.");
                 }
             }
-            for(i=0; i < allOptions; i++){
-                option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+            
+            for (i = 0; i < allOptions; i++) {
+                option_list.children[i].classList.add("disabled"); // Once user selects an option, disable all options
             }
-            next_btn.classList.add("show"); //show the next button if user selected any option
+            
+            next_btn.classList.add("show"); // Show the next button if user selected any option
         }
     }
 }
@@ -240,24 +241,26 @@ const viewHighScoresBtn = document.getElementById("viewHighScoresBtn");
 
 
         // Function to show the high scores box
-function showHighScoresBox() {
-    const highScoresBox = document.querySelector('.high_scores_box');
-    const highScoresList = document.querySelector('.high_scores_list');
-    let scores=JSON.parse(localStorage.getItem("highScores"))|| []
-    
-    //orders scores from highest to lowest
-    scores.sort((a, b) => b.userScore - a.userScore);
-    
-    highScoresList.innerHTML = '';
-
-    scores.forEach((score) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = ` ${score.initials}: ${score.userScore}`;
-        highScoresList.appendChild(listItem);
-    });
-
-    highScoresBox.style.display = 'block';
-}
+        function showHighScoresBox() {
+            const highScoresBox = document.querySelector('.high_scores_box');
+            const highScoresList = document.querySelector('.high_scores_list');
+            let scores = JSON.parse(localStorage.getItem("highScores")) || [];
+            
+            // Order scores from highest to lowest
+            scores.sort((a, b) => b.userScore - a.userScore);
+            
+            highScoresList.innerHTML = '';
+        
+            scores.forEach((score, index) => { // Add 'index' parameter
+                const listItem = document.createElement('li');
+                // Display score number (index + 1) along with initials and score
+                listItem.textContent = `${index + 1}. ${score.initials}: ${score.userScore}`;
+                highScoresList.appendChild(listItem);
+            });
+        
+            highScoresBox.style.display = 'block';
+        }
+        
 
 // Function to hide the high scores box
 function hideHighScoresBox() {
