@@ -23,7 +23,12 @@ When you enter the quiz, you are received by the instructions page with guidelin
 
 ## Credits
 
-https://www.w3schools.com/html/html5_semantic_elements.asp
+https://www.youtube.com/watch?v=PBcqGxrr9g8
+https://www.youtube.com/watch?v=riDzcEQbX6k
+https://www.youtube.com/watch?v=pQr4O1OITJo&t=356s
+https://michael-karen.medium.com/how-to-save-high-scores-in-local-storage-7860baca9d68
+https://developer.mozilla.org/en-US/docs/Web/API/Storage
+https://www.geeksforgeeks.org/how-to-create-a-simple-javascript-quiz/
 
 ## License
 
