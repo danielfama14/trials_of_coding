@@ -13,7 +13,7 @@ let questions = [
   },
     {
     numb: 2,
-    question: "The condition in an if/else statement is enclosed with ______",
+    question: "The condition in an if/else statement is enclosed with ...",
     answer: "Parenthesis",
     options: [
       "Quotes",
@@ -24,7 +24,7 @@ let questions = [
   },
     {
     numb: 3,
-    question: "Arrays in JavaScript can be used to store ______",
+    question: "Arrays in JavaScript can be used to store ...",
     answer: "All of the above",
     options: [
       "Numbers and strings",
@@ -35,7 +35,7 @@ let questions = [
   },
     {
     numb: 4,
-    question: "String values must be enclosed within ______ when being assigned to variables",
+    question: "When being assigned to variables, string values must be enclosed within ...",
     answer: "Quotes",
     options: [
       "Commas",
@@ -55,18 +55,5 @@ let questions = [
       "Console log"
     ]
   },
-  // you can uncomment the below codes and make duplicate as more as you want to add question
-  // but remember you need to give the numb value serialize like 1,2,3,5,6,7,8,9.....
-
-  //   {
-  //   numb: 6,
-  //   question: "Your Question is Here",
-  //   answer: "Correct answer of the question is here",
-  //   options: [
-  //     "Option 1",
-  //     "option 2",
-  //     "option 3",
-  //     "option 4"
-  //   ]
-  // },
+  
 ];
